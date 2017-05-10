@@ -38,8 +38,8 @@ function mosaico_civicrm_install() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
  */
 function mosaico_civicrm_postInstall() {
-  _mosaico_civix_civicrm_postInstall();
   _mosaico_civicrm_install_settings();
+  _mosaico_civix_civicrm_postInstall();
 }
 
 /**
