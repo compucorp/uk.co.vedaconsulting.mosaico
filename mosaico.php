@@ -38,6 +38,7 @@ function mosaico_civicrm_install() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
  */
 function mosaico_civicrm_postInstall() {
+  _mosaico_civicrm_install_settings();
   _mosaico_civix_civicrm_postInstall();
 }
 
@@ -352,4 +353,11 @@ function mosaico_civicrm_container(\Symfony\Component\DependencyInjection\Contai
   }
   require_once 'CRM/Mosaico/Services.php';
   CRM_Mosaico_Services::registerServices($container);
+}
+
+/**
+* Sets default settings when installing mosaico extension
+*/
+function _mosaico_civicrm_install_settings() {
+  civicrm_api3('Setting', 'create', array('mosaico_layout' => 'bootstrap-wizard'));
 }
