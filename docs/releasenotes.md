@@ -1,6 +1,20 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
+## Release 3.9 (not yet released)
+
+* Update mosaico package - see changes: https://github.com/civicrm/mosaico/compare/v0.18.10-civicrm-4.0...v0.18.11-civicrm-1.0
+* [!699](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/699) - Support filtering by ID in the URL for mosaico templates.
+* [#666](https://lab.civicrm.org/extensions/mosaico/-/issues/666) Refresh template list after delete.
+* [#698](https://lab.civicrm.org/extensions/mosaico/-/issues/698) Fix PHP warning by rounding divided placeholder values.
+* [!696](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/696) Add setting to override color picker theme.
+* [#675](https://lab.civicrm.org/extensions/mosaico/-/issues/675) Ensure that Flexmailer does not re-trigger the processing in onCompose.
+* [#686](https://lab.civicrm.org/extensions/mosaico/-/issues/686) For A/B content mailing, copy template_options so usable copies can be made.
+* [#688](https://lab.civicrm.org/extensions/mosaico/-/issues/688) Add support for uploading webp files.
+* [#690](https://lab.civicrm.org/extensions/mosaico/-/issues/690) - dev/core#5041 - Add role img and ariahidden true to all Font Awesome Icons.
+* [#695](https://lab.civicrm.org/extensions/mosaico/-/issues/695) Replace deprecated CRM_Utils_Number::formatUnitSize.
+* Fix [#692](https://lab.civicrm.org/extensions/mosaico/-/issues/692) Avoid consecutive slashes in metadata template URL.
+
 ## Release 3.8 (2025-07-09)
 
 * [#683](https://github.com/veda-consulting-company/uk.co.vedaconsulting.mosaico/pull/683) - Use upstream tidy process to fix the send to a group functionality whilst preserving fix for #664 (Fix send test email to group).
