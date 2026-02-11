@@ -41,7 +41,6 @@ return [
         'label' => E::ts('Mosaico Templates'),
         'name' => 'mosaico_templates',
         'url' => 'civicrm/mosaico-template-list',
-        'icon' => '',
         'permission' => [
           'edit message templates',
         ],
