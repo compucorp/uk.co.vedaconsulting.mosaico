@@ -7,6 +7,8 @@
  *
  * For the most part, we use the same structure as CiviMail -- with some
  * exceptions (like disabling Smarty).
+ *
+ * @service civi_mosaico_mosaico_composer
  */
 class CRM_Mosaico_MosaicoComposer extends \Civi\FlexMailer\Listener\DefaultComposer {
 
