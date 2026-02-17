@@ -1,7 +1,7 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
-## Release 3.9 (not yet released)
+## Release 3.9 (2026-02-17)
 
 * Update mosaico package - see changes: https://github.com/civicrm/mosaico/compare/v0.18.10-civicrm-4.0...v0.18.11-civicrm-1.0
 * [!699](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/699) - Support filtering by ID in the URL for mosaico templates.
