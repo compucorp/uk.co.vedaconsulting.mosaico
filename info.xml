@@ -4,10 +4,18 @@
   <name>Mosaico</name>
   <description>Integration with mosaico templates builder. Allows building civi message templates using mosaico template builder.</description>
   <license>AGPL-3.0</license>
-  <maintainer>
-    <author>Matthew Wire (MJW), deepak-srivastava</author>
-    <email>mjw@mjwconsult.co.uk, deepak@mountev.co.uk</email>
-  </maintainer>
+  <authors>
+    <author>
+      <name>MJW</name>
+      <email>info@mjwconsult.co.uk</email>
+      <role>Maintainer</role>
+    </author>
+    <author>
+      <name>deepak-srivastava</name>
+      <email>deepak@mountev.co.uk</email>
+      <role>Maintainer</role>
+    </author>
+  </authors>
   <urls>
     <url desc="Main Extension Page">https://civicrm.org/extensions/email-template-builder</url>
     <url desc="Documentation">https://docs.civicrm.org/mosaico/en/latest</url>
