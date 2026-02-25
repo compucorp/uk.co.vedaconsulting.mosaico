@@ -3,7 +3,7 @@ Download via [the extensions directory](https://civicrm.org/extensions/email-tem
 
 ## Release 3.9 (2026-02-17) 
 
-* Update mosaico package - see changes: https://github.com/civicrm/mosaico/compare/v0.18.10-civicrm-4.0...v0.18.11-civicrm-1.0
+* Update mosaico package - see changes: [https://github.com/civicrm/mosaico/compare/v0.18.10-civicrm-4.0...v0.18.11-civicrm-1.0](https://github.com/civicrm/mosaico/compare/v0.18.10-civicrm-4.0...v0.18.11-civicrm-1.0)
 * [!699](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/699) - Support filtering by ID in the URL for mosaico templates.
 * [#666](https://lab.civicrm.org/extensions/mosaico/-/issues/666) Refresh template list after delete.
 * [#698](https://lab.civicrm.org/extensions/mosaico/-/issues/698) Fix PHP warning by rounding divided placeholder values.
