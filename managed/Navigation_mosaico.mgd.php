@@ -42,7 +42,7 @@ return [
         'name' => 'mosaico_templates',
         'url' => 'civicrm/mosaico-template-list',
         'permission' => [
-          'edit message templates',
+          'edit message templates', 'edit user driven message templates',
         ],
         'permission_operator' => 'OR',
         'parent_id.name' => 'Mailings',
