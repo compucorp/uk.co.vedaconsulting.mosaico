@@ -1,0 +1,105 @@
+.crm-mosaico-selected {
+  width: 100%;
+  text-align: center;
+
+  .crm-mosaico-template-item {
+    margin: 1em auto;
+  }
+}
+
+.crm-mosaico-unselected {
+  .crm-mosaico-template-item {
+    float: left;
+    margin: 1em;
+  }
+}
+
+.crm-mosaico-template-item {
+  border-radius: 4px;
+  opacity: 1;
+  display: flex;
+
+  &.thumbnail {
+    background: transparent;
+    border: 1px transparent;
+    padding: 0;
+  }
+
+  &:hover {
+    .crm-mosaico-template-actions {
+      opacity: 1;
+    }
+
+    img {
+      box-shadow: $crm-mosaico-template-item-shadow;
+      opacity: 0.66;
+    }
+
+    .crm-mosaico-template-title-wrapper {
+      background: darken(#efefe5, 5%);
+    }
+  }
+
+  .crm-mosaico-template-image-wrapper {
+    flex: 0 0 165px;
+    background: $crm-mosaico-template-item-wrapper;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      height: auto !important;
+    }
+  }
+
+  .crm-mosaico-template-actions-wrapper {
+    bottom: 0;
+    display: table;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 100%;
+  }
+
+  .crm-mosaico-template-actions {
+    display: table-cell;
+    opacity: 0;
+    transition: opacity 400ms;
+    vertical-align: middle;
+    margin: auto;
+    text-align: center;
+  }
+
+  .crm-mosaico-template-image-wrapper .crm-mosaico-template-actions .btn {
+    width: 63%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .crm-mosaico-template-title-wrapper {
+    //border: 1px solid $crm-mosaico-template-border;
+    color: $gray-darker;
+    font-weight: 600;
+    line-height: 16px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    vertical-align: middle;
+    text-decoration: none;
+    flex: 1 0 12em;
+
+    small {
+      display: block;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+  }
+}
