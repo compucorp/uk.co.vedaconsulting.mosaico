@@ -5,6 +5,7 @@ Download via [the extensions directory](https://civicrm.org/extensions/email-tem
 
 * [!702](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/702) Avoid fatal error about missing API_Wrapper, fix #699.
 * [!703](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/703) Add message template permission to edit user driven message templates.
+* [!705](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/705) Fix group fields on mailing screens.
 
 ## Release 3.9 (2026-02-17)
 
