@@ -24,16 +24,24 @@
         url: CRM.url('civicrm/mosaico/iframe', 'snippet=1'),
         dimensions: function resize() {
           var c = CRM.crmMosaico || {};
-          var top = 0, left = 0, width = $(window).width(), height = $(window).height();
-          if (c.topNav && $(c.topNav).length > 0) {
-            top = $(c.topNav).outerHeight() + $(c.topNav).position().top;
-            height -= top;
+          var top = 0, left = 0;
+          if (c.topNav) {
+            $topNav = $(c.topNav);
+            if ($topNav.length > 0) {
+              top = $topNav.offset().top;
+            }
+            if ($topNav.is(':visible')) {
+              top += $topNav.outerHeight();
+            }
           }
-          if (c.leftNav && $(c.leftNav).length > 0) {
-            left = $(c.leftNav).width();
-            width -= left;
+
+          if (c.leftNav) {
+            $leftNav = $(c.leftNav);
+            if ($leftNav.length > 0 && $leftNav.is(':visible'))) {
+              left = $leftNav.width();
+            }
           }
-          return {position: 'fixed', left: left + 'px', top: top + 'px', width: width + 'px', height: height + 'px'};
+          return {position: 'fixed', left: left + 'px', top: top + 'px', width: 'calc(100% - ' + left + 'px)', height: 'calc(100% - ' + top + 'px)', 'z-index: '999'};
         }
       };
       angular.extend(cfg, options);
