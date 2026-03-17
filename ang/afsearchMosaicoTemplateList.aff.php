@@ -11,4 +11,5 @@ return [
     'edit message templates',
     'edit user driven message templates',
   ],
+  'permission_operator' => 'OR',
 ];
