@@ -1,11 +1,12 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
-## Release 3.11 (2026-03-17)
+## Release 3.11 (2026-03-18)
 
 * [!709](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/709) Fix: prevent login loop when accessing Mosaico templates in Drupal.
 * [!704](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/704) Remove api4 wrapper.
 * [!708](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/708) Fixing positions of iFrame.
+* [!711](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/711) Fix permissions for API4 MosaicoTemplate.
 
 ## Release 3.10 (2026-03-11)
 
