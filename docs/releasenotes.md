@@ -1,6 +1,10 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
+## Release 3.12 (2026-03-19)
+
+* Revert !708 because it is causing syntax errors per https://lab.civicrm.org/extensions/mosaico/-/merge_requests/712 and others.
+
 ## Release 3.11 (2026-03-18)
 
 * [!709](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/709) Fix: prevent login loop when accessing Mosaico templates in Drupal.
