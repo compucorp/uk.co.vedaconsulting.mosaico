@@ -77,7 +77,7 @@ class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements En
     $result = $this->callAPISuccess('mailing', 'create', $params);
     $previewResult = $result['values'][$result['id']]['api.Mailing.preview'];
 
-    $this->assertRegExp($expectRegex, $previewResult['values'][$field]);
+    $this->assertMatchesRegularExpression($expectRegex, $previewResult['values'][$field]);
   }
 
   protected function getContactId($username) {
