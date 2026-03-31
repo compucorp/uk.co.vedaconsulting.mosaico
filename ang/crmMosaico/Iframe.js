@@ -25,14 +25,21 @@
         dimensions: function resize() {
           var c = CRM.crmMosaico || {};
           var top = 0, left = 0, width = $(window).width(), height = $(window).height();
-          if (c.topNav && $(c.topNav).length > 0) {
-            top = $(c.topNav).outerHeight() + $(c.topNav).position().top;
-            height -= top;
+          // Account for top navigation bars (e.g. CiviCRM menu, Joomla header, Drupal toolbar)
+          var topNavSelectors = [c.topNav, c.topNav2];
+          for (var i = 0; i < topNavSelectors.length; i++) {
+            var sel = topNavSelectors[i];
+            if (sel && $(sel).length > 0 && $(sel).is(':visible')) {
+              var navBottom = $(sel).outerHeight() + $(sel).position().top;
+              if (navBottom > top) top = navBottom;
+            }
           }
-          if (c.leftNav && $(c.leftNav).length > 0) {
-            left = $(c.leftNav).width();
-            width -= left;
+          height = $(window).height() - top;
+          // Account for left navigation sidebar (e.g. WordPress adminmenu, Joomla sidebar)
+          if (c.leftNav && $(c.leftNav).length > 0 && $(c.leftNav).is(':visible')) {
+            left = $(c.leftNav).outerWidth();
           }
+          width = $(window).width() - left;
           return {position: 'fixed', left: left + 'px', top: top + 'px', width: width + 'px', height: height + 'px'};
         }
       };
@@ -67,11 +74,33 @@
         if ($iframe) $iframe.css(cfg.dimensions());
       }
 
+      // Debounced resize for smooth sidebar transition handling
+      var resizeTimer = null;
+      function onResizeDelayed() {
+        onResize();
+        // Also recalculate after CSS transition completes (Joomla Atum: 300ms)
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(onResize, 350);
+      }
+
       this.render = function render() {
-        $iframe = $('<iframe id="crm-mosaico" frameborder="0" class="ui-front">');
+        var c = CRM.crmMosaico || {};
+        $iframe = $('<iframe id="crm-mosaico" frameborder="0" class="ui-front" style="z-index:1020">');
         $('body').append($iframe);
         onResize();
         $(window).on('resize', onResize);
+
+        // Watch for sidebar width changes (e.g. Joomla Atum collapse/expand).
+        // Observe class changes on the sidebar's parent, which typically
+        // controls the collapsed state via a CSS class.
+        if (c.leftNav && window.MutationObserver) {
+          var leftNavEl = $(c.leftNav)[0];
+          var observeTarget = leftNavEl ? leftNavEl.parentElement : null;
+          if (observeTarget) {
+            this._sidebarObserver = new MutationObserver(onResizeDelayed);
+            this._sidebarObserver.observe(observeTarget, {attributes: true, attributeFilter: ['class']});
+          }
+        }
 
         iframe = $iframe[0];
         iframe.setAttribute('src', cfg.url);
@@ -138,6 +167,11 @@
       this.destroy = function destroy() {
         this.hide();
         $(window).off('resize', onResize);
+        if (this._sidebarObserver) {
+          this._sidebarObserver.disconnect();
+          this._sidebarObserver = null;
+        }
+        if (resizeTimer) clearTimeout(resizeTimer);
         if ($iframe) $iframe.remove();
         iframe = $iframe = null;
         return this;

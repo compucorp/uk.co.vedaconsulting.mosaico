@@ -438,16 +438,34 @@ class CRM_Mosaico_Utils {
   }
 
   public static function getAngularSettings(): array {
-    return [
+    $settings = [
       'canDelete' => Civi::service('civi_api_kernel')->runAuthorize('MosaicoTemplate', 'delete', ['version' => 3, 'check_permissions' => 1]),
       // If there are any navbars that we should try to avoid, include them
-      // in these jQuery selectors.
+      // in these jQuery selectors. Only CMS-relevant selectors are included
+      // to avoid false matches on generic element IDs.
       'topNav' => '#civicrm-menu',
-      'drupalNav' => '#toolbar',
-      'joomlaNav' => '.com_civicrm > .navbar',
-      'leftNav' => '.wp-admin #adminmenu',
       'variantsPct' => CRM_Mosaico_AbDemux::DEFAULT_AB_PERCENTAGE,
     ];
+
+    $uf = \CRM_Core_Config::singleton()->userFramework;
+    switch ($uf) {
+      case 'Joomla':
+        // Joomla 4/5 Atum admin template
+        $settings['topNav2'] = '#header';
+        $settings['leftNav'] = '#sidebar-wrapper';
+        break;
+
+      case 'Drupal':
+      case 'Drupal8':
+        $settings['topNav2'] = '#toolbar';
+        break;
+
+      case 'WordPress':
+        $settings['leftNav'] = '#adminmenu';
+        break;
+    }
+
+    return $settings;
   }
 
 }
