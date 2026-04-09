@@ -24,23 +24,21 @@
         url: CRM.url('civicrm/mosaico/iframe', 'snippet=1'),
         dimensions: function resize() {
           var c = CRM.crmMosaico || {};
-          var top = 0, left = 0, width = $(window).width(), height = $(window).height();
+          var top = 0, left = 0;
           // Account for top navigation bars (e.g. CiviCRM menu, Joomla header, Drupal toolbar)
           var topNavSelectors = [c.topNav, c.topNav2];
           for (var i = 0; i < topNavSelectors.length; i++) {
             var sel = topNavSelectors[i];
             if (sel && $(sel).length > 0 && $(sel).is(':visible')) {
-              var navBottom = $(sel).outerHeight() + $(sel).position().top;
+              var navBottom = $(sel).outerHeight() + $(sel).offset().top;
               if (navBottom > top) top = navBottom;
             }
           }
-          height = $(window).height() - top;
           // Account for left navigation sidebar (e.g. WordPress adminmenu, Joomla sidebar)
           if (c.leftNav && $(c.leftNav).length > 0 && $(c.leftNav).is(':visible')) {
             left = $(c.leftNav).outerWidth();
           }
-          width = $(window).width() - left;
-          return {position: 'fixed', left: left + 'px', top: top + 'px', width: width + 'px', height: height + 'px'};
+          return {position: 'fixed', left: left + 'px', top: top + 'px', width: 'calc(100% - ' + left + 'px)', height: 'calc(100% - ' + top + 'px)'};
         }
       };
       angular.extend(cfg, options);
@@ -85,7 +83,7 @@
 
       this.render = function render() {
         var c = CRM.crmMosaico || {};
-        $iframe = $('<iframe id="crm-mosaico" frameborder="0" class="ui-front" style="z-index:1020">');
+        $iframe = $('<iframe id="crm-mosaico" frameborder="0" class="ui-front">');
         $('body').append($iframe);
         onResize();
         $(window).on('resize', onResize);
