@@ -74,7 +74,13 @@ class CRM_Mosaico_Services {
 
       case 'iv-gd':
         self::applyAdhocClassloaderSafely();
-        return new CRM_Mosaico_Graphics_Intervention(['driver' => 'gd']);
+        // Check for FreeType support
+        if (function_exists('gd_info') && gd_info()['FreeType Support'] === TRUE) {
+          return new CRM_Mosaico_Graphics_Intervention(['driver' => 'gd']);
+        }
+        else {
+          throw new CRM_Mosaico_Graphics_Exception("GD is missing Freetype support. Please ensure that GD is configured with Freetype support. ");
+        }
 
       case 'iv-imagick':
         self::applyAdhocClassloaderSafely();
