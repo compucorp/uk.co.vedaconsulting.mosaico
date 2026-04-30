@@ -55,11 +55,11 @@ class CRM_Mosaico_Services {
     switch ($graphics) {
       case 'auto':
         self::applyAdhocClassloaderSafely();
-        if (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('gd')) {
-          $graphics = 'iv-gd';
-        }
-        elseif (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
+        if (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
           $graphics = 'iv-imagick';
+        }
+        elseif (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('gd')) {
+          $graphics = 'iv-gd';
         }
         elseif (!CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
           $graphics = 'imagick';
