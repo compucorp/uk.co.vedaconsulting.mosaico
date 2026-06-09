@@ -6,6 +6,7 @@ View/Download this extension in the [Extension Directory](https://civicrm.org/ex
 
 ## Requirements
 * PHP-ImageMagick - recommended.
+* PHP-GD with Freetype support - as an alternative to ImageMagick.
 * [FlexMailer](https://docs.civicrm.org/flexmailer/en/latest/)
 
 ## History and blog posts

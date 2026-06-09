@@ -55,11 +55,11 @@ class CRM_Mosaico_Services {
     switch ($graphics) {
       case 'auto':
         self::applyAdhocClassloaderSafely();
-        if (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('gd')) {
-          $graphics = 'iv-gd';
-        }
-        elseif (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
+        if (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
           $graphics = 'iv-imagick';
+        }
+        elseif (CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('gd')) {
+          $graphics = 'iv-gd';
         }
         elseif (!CRM_Mosaico_Graphics_Intervention::isClassLoaded() && extension_loaded('imagick') && class_exists("Imagick")) {
           $graphics = 'imagick';
@@ -74,7 +74,13 @@ class CRM_Mosaico_Services {
 
       case 'iv-gd':
         self::applyAdhocClassloaderSafely();
-        return new CRM_Mosaico_Graphics_Intervention(['driver' => 'gd']);
+        // Check for FreeType support
+        if (function_exists('gd_info') && gd_info()['FreeType Support'] === TRUE) {
+          return new CRM_Mosaico_Graphics_Intervention(['driver' => 'gd']);
+        }
+        else {
+          throw new CRM_Mosaico_Graphics_Exception("GD is missing Freetype support. Please ensure that GD is configured with Freetype support. ");
+        }
 
       case 'iv-imagick':
         self::applyAdhocClassloaderSafely();
