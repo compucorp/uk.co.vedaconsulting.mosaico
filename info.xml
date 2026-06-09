@@ -23,11 +23,11 @@
     <url desc="Support">https://lab.civicrm.org/extensions/mosaico/-/work_items</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2026-03-19</releaseDate>
-  <version>3.12</version>
+  <releaseDate>2026-05-28</releaseDate>
+  <version>3.13</version>
   <develStage>stable</develStage>
   <compatibility>
-    <ver>6.9</ver>
+    <ver>6.12</ver>
   </compatibility>
   <smarty_compatibility>
     <ver>5</ver>
