@@ -9,7 +9,7 @@ return [
   'server_route' => 'civicrm/mosaico-template-list',
   'permission' => [
     'edit message templates',
-    'edit user driven message templates',
+    'edit user-driven message templates',
   ],
   'permission_operator' => 'OR',
 ];
