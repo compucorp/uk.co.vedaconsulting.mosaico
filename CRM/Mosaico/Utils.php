@@ -435,6 +435,9 @@ class CRM_Mosaico_Utils {
       ob_flush();
     }
     flush();
+    // Exit before civiExit() fires onCiviExit(), which attempts session_start()
+    // after headers have already been sent by readfile(), causing a RuntimeException.
+    exit(0);
   }
 
   public static function getAngularSettings(): array {
