@@ -1,16 +1,16 @@
 <?php
 
-use Civi\Test\EndToEndInterface;
+use Civi\Test\HeadlessInterface;
 
 require_once __DIR__ . '/../TestCase.php';
 
 /**
  * Test image operations via the intervention/image v3 graphics provider.
  *
- * @group e2e
+ * @group headless
  * @see cv
  */
-class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase implements EndToEndInterface {
+class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase implements HeadlessInterface {
 
   private string $tmpDir;
 
@@ -39,7 +39,9 @@ class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase impleme
     $white = imagecolorallocate($img, 255, 255, 255);
     imagefill($img, 0, 0, $white);
     imagepng($img, $path);
-    imagedestroy($img);
+    if (version_compare(PHP_VERSION, '8.5', '<')) {
+      imagedestroy($img);
+    }
   }
 
   /**
