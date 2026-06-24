@@ -93,7 +93,7 @@ class CRM_Mosaico_Graphics_Intervention extends CRM_Mosaico_Graphics_Interface {
       $font->color('#B0B0B0');
     });
 
-    header('Content-Type: image/png');
+    CRM_Utils_System::setHttpHeader('Content-Type', 'image/png');
     echo $img->toPng();
   }
 
