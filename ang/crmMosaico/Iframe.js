@@ -38,7 +38,9 @@
           if (c.leftNav && $(c.leftNav).length > 0 && $(c.leftNav).is(':visible')) {
             left = $(c.leftNav).outerWidth();
           }
-          return {position: 'fixed', left: left + 'px', top: top + 'px', width: 'calc(100% - ' + left + 'px)', height: 'calc(100% - ' + top + 'px)'};
+          // z-index layers the editor above Joomla 4/5 Atum's fixed sidebar
+          // (z-index 1010). Harmless on other CMSes, which don't overlap it. See #611.
+          return {position: 'fixed', left: left + 'px', top: top + 'px', width: 'calc(100% - ' + left + 'px)', height: 'calc(100% - ' + top + 'px)', 'z-index': 1020};
         }
       };
       angular.extend(cfg, options);
