@@ -9,34 +9,41 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
    * Install module
    */
   public function install() {
-    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be present before we save the option value
-    // The 'match' param will prevent it from being double-inserted.
-    \Civi\Api4\OptionGroup::save(FALSE)
-      ->addRecord([
-        'name' => 'mailing_template_category',
-        'title' => 'Mailing Template Category',
-        'is_reserved' => TRUE,
-        'is_active' => TRUE,
-      ])
-      ->setMatch(['name'])
-      ->execute();
-
-    $existingCategories = \Civi\Api4\OptionValue::get(FALSE)
-      ->selectRowCount()
-      ->addWhere('option_group_id.name', '=', 'mailing_template_category')
-      ->execute();
-
-    // If there are no categories, insert the default "Newsletter"
-    if (!$existingCategories->count()) {
-      \Civi\Api4\OptionValue::save(FALSE)
+    // Seed the default "Newsletter" category. Wrapped so a failure here (e.g. APIv4 not
+    // ready during a multi-version upgrade) is logged rather than aborting the upgrade.
+    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be
+    // present before we save the option value; the 'match' param prevents double-insertion.
+    try {
+      \Civi\Api4\OptionGroup::save(FALSE)
         ->addRecord([
-          'option_group_id.name' => 'mailing_template_category',
-          'label' => 'Newsletter',
-          'value' => '1',
-          'name' => 'newsletter',
-          'is_default' => TRUE,
+          'name' => 'mailing_template_category',
+          'title' => 'Mailing Template Category',
+          'is_reserved' => TRUE,
+          'is_active' => TRUE,
         ])
+        ->setMatch(['name'])
         ->execute();
+
+      $existingCategories = \Civi\Api4\OptionValue::get(FALSE)
+        ->selectRowCount()
+        ->addWhere('option_group_id.name', '=', 'mailing_template_category')
+        ->execute();
+
+      // If there are no categories, insert the default "Newsletter"
+      if (!$existingCategories->count()) {
+        \Civi\Api4\OptionValue::save(FALSE)
+          ->addRecord([
+            'option_group_id.name' => 'mailing_template_category',
+            'label' => 'Newsletter',
+            'value' => '1',
+            'name' => 'newsletter',
+            'is_default' => TRUE,
+          ])
+          ->execute();
+      }
+    }
+    catch (\Throwable $e) {
+      $this->ctx->log->info($e->getMessage());
     }
   }
 
@@ -150,41 +157,56 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
   public function upgrade_4706() {
     $this->ctx->log->info('Applying update 4706');
 
-    // Stop managing the "newsletter" category - it should only be inserted once as a default,
-    // but the "managed" thing was preveting the user from deleting it.
-    \Civi\Api4\Managed::delete(FALSE)
-      ->addWhere('module', '=', 'uk.co.vedaconsulting.mosaico')
-      ->addWhere('name', '=', 'OptionGroup_mailing_template_category_newsletter')
-      ->execute();
+    // Stop managing the "newsletter" category - it should only be inserted once as a
+    // default, but the "managed" thing was preventing the user from deleting it. Use raw
+    // SQL rather than Civi\Api4\Managed::delete() so this works even when APIv4 is not
+    // fully available (e.g. very early in a multi-version upgrade bootstrap). This removes
+    // only the managed tracking row - civicrm_managed has no cascading FK to the option
+    // value, so the category itself is left intact (which is the point: it becomes
+    // user-deletable).
+    \CRM_Core_DAO::executeQuery(
+      'DELETE FROM civicrm_managed WHERE module = %1 AND name = %2',
+      [
+        1 => ['uk.co.vedaconsulting.mosaico', 'String'],
+        2 => ['OptionGroup_mailing_template_category_newsletter', 'String'],
+      ]
+    );
 
-    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be present before we save the option value
-    // The 'match' param will prevent it from being double-inserted.
-    \Civi\Api4\OptionGroup::save(FALSE)
-      ->addRecord([
-        'name' => 'mailing_template_category',
-        'title' => 'Mailing Template Category',
-        'is_reserved' => TRUE,
-        'is_active' => TRUE,
-      ])
-      ->setMatch(['name'])
-      ->execute();
-
-    $existingCategories = \Civi\Api4\OptionValue::get(FALSE)
-      ->selectRowCount()
-      ->addWhere('option_group_id.name', '=', 'mailing_template_category')
-      ->execute();
-
-    // If there are no categories, insert the default "Newsletter"
-    if (!$existingCategories->count()) {
-      \Civi\Api4\OptionValue::save(FALSE)
+    // Seed the default "Newsletter" category. Wrapped so a failure here (e.g. APIv4 not
+    // ready during a multi-version upgrade) is logged rather than aborting the upgrade.
+    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be
+    // present before we save the option value; the 'match' param prevents double-insertion.
+    try {
+      \Civi\Api4\OptionGroup::save(FALSE)
         ->addRecord([
-          'option_group_id.name' => 'mailing_template_category',
-          'label' => 'Newsletter',
-          'value' => '1',
-          'name' => 'newsletter',
-          'is_default' => TRUE,
+          'name' => 'mailing_template_category',
+          'title' => 'Mailing Template Category',
+          'is_reserved' => TRUE,
+          'is_active' => TRUE,
         ])
+        ->setMatch(['name'])
         ->execute();
+
+      $existingCategories = \Civi\Api4\OptionValue::get(FALSE)
+        ->selectRowCount()
+        ->addWhere('option_group_id.name', '=', 'mailing_template_category')
+        ->execute();
+
+      // If there are no categories, insert the default "Newsletter"
+      if (!$existingCategories->count()) {
+        \Civi\Api4\OptionValue::save(FALSE)
+          ->addRecord([
+            'option_group_id.name' => 'mailing_template_category',
+            'label' => 'Newsletter',
+            'value' => '1',
+            'name' => 'newsletter',
+            'is_default' => TRUE,
+          ])
+          ->execute();
+      }
+    }
+    catch (\Throwable $e) {
+      $this->ctx->log->info($e->getMessage());
     }
 
     return TRUE;
