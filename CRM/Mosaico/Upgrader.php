@@ -9,10 +9,18 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
    * Install module
    */
   public function install() {
-    // Seed the default "Newsletter" category. Wrapped so a failure here (e.g. APIv4 not
-    // ready during a multi-version upgrade) is logged rather than aborting the upgrade.
-    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be
-    // present before we save the option value; the 'match' param prevents double-insertion.
+    $this->seedDefaultCategory();
+  }
+
+  /**
+   * Seed the default "Newsletter" mailing template category.
+   *
+   * Wrapped so a failure (e.g. APIv4 not ready during a multi-version upgrade)
+   * is logged rather than aborting. This would normally be added by
+   * Mailing_Template_Category.mgd.php but needs to be present before we save the
+   * option value; the 'match' param prevents double-insertion.
+   */
+  protected function seedDefaultCategory() {
     try {
       \Civi\Api4\OptionGroup::save(FALSE)
         ->addRecord([
@@ -172,42 +180,7 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
       ]
     );
 
-    // Seed the default "Newsletter" category. Wrapped so a failure here (e.g. APIv4 not
-    // ready during a multi-version upgrade) is logged rather than aborting the upgrade.
-    // This would normally be added by Mailing_Template_Category.mgd.php but needs to be
-    // present before we save the option value; the 'match' param prevents double-insertion.
-    try {
-      \Civi\Api4\OptionGroup::save(FALSE)
-        ->addRecord([
-          'name' => 'mailing_template_category',
-          'title' => 'Mailing Template Category',
-          'is_reserved' => TRUE,
-          'is_active' => TRUE,
-        ])
-        ->setMatch(['name'])
-        ->execute();
-
-      $existingCategories = \Civi\Api4\OptionValue::get(FALSE)
-        ->selectRowCount()
-        ->addWhere('option_group_id.name', '=', 'mailing_template_category')
-        ->execute();
-
-      // If there are no categories, insert the default "Newsletter"
-      if (!$existingCategories->count()) {
-        \Civi\Api4\OptionValue::save(FALSE)
-          ->addRecord([
-            'option_group_id.name' => 'mailing_template_category',
-            'label' => 'Newsletter',
-            'value' => '1',
-            'name' => 'newsletter',
-            'is_default' => TRUE,
-          ])
-          ->execute();
-      }
-    }
-    catch (\Throwable $e) {
-      $this->ctx->log->error('Failed to seed default mailing template category: ' . $e->getMessage());
-    }
+    $this->seedDefaultCategory();
 
     return TRUE;
   }
