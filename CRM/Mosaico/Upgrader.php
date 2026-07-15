@@ -43,7 +43,7 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
       }
     }
     catch (\Throwable $e) {
-      $this->ctx->log->info($e->getMessage());
+      $this->ctx->log->error('Failed to seed default mailing template category: ' . $e->getMessage());
     }
   }
 
@@ -206,7 +206,7 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
       }
     }
     catch (\Throwable $e) {
-      $this->ctx->log->info($e->getMessage());
+      $this->ctx->log->error('Failed to seed default mailing template category: ' . $e->getMessage());
     }
 
     return TRUE;
