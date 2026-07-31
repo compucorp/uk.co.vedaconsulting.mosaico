@@ -1,28 +1,19 @@
 <?php
 
-use Civi\Test\EndToEndInterface;
+use Civi\Test\HeadlessInterface;
 
 require_once __DIR__ . '/TestCase.php';
 
 /**
  * Test the MosaicoTemplate API.
  *
- * @group e2e
+ * @group headless
  * @see cv
  */
-class CRM_Mosaico_MosaicoTemplateTest extends CRM_Mosaico_TestCase implements EndToEndInterface {
+class CRM_Mosaico_MosaicoTemplateTest extends CRM_Mosaico_TestCase implements HeadlessInterface {
 
-  public static function setUpBeforeClass(): void {
-    // See: https://github.com/civicrm/org.civicrm.testapalooza/blob/master/civi-test.md
-
-    // Example: Install this extension. Don't care about anything else.
-    \Civi\Test::e2e()->install(['org.civicrm.search_kit'])->installMe(__DIR__)->apply();
-
-    // Example: Uninstall all extensions except this one.
-    // \Civi\Test::e2e()->uninstall('*')->installMe(__DIR__)->apply();
-
-    // Example: Install only core civicrm extensions.
-    // \Civi\Test::e2e()->uninstall('*')->install('org.civicrm.*')->apply();
+  public function setUpHeadless() {
+    return \Civi\Test::headless()->installMe(__DIR__)->apply();
   }
 
   public function setUp(): void {
