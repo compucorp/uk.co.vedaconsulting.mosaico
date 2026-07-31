@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/veda-consulting-company/uk.co.vedaconsulting.mosaico.git"
+    "url": "git+https://lab.civicrm.org/extensions/mosaico.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/veda-consulting-company/uk.co.vedaconsulting.mosaico/issues"
+    "url": "https://lab.civicrm.org/extensions/mosaico/-/work_items"
   },
-  "homepage": "https://github.com/veda-consulting-company/uk.co.vedaconsulting.mosaico#readme",
+  "homepage": "https://lab.civicrm.org/extensions/mosaico#readme",
   "devDependencies": {
     "sass": "^1.70.0"
   }

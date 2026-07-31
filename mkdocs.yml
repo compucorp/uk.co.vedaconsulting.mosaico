@@ -1,5 +1,5 @@
 site_name: Mosaico Responsive Email Template Editor
-repo_url: https://github.com/veda-consulting-company/uk.co.vedaconsulting.mosaico
+repo_url: https://lab.civicrm.org/extensions/mosaico
 theme:
   name: material
 markdown_extensions:

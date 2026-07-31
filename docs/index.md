@@ -49,7 +49,7 @@ This extension is supported and maintained by the CiviCRM community.
 
 Please make sure you have followed installation instructions.
 
-Open issues on [github](https://github.com/veda-consulting/uk.co.vedaconsulting.mosaico/issues) with:
+Open issues on [GitLab](https://lab.civicrm.org/extensions/mosaico/-/work_items) with:
 - screenshot of failure with any possible errors in firebug or js console
 - any related logs or backtrace from civicrm
 - tell us what version of CiviCRM and extension, you using.
