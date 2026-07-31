@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Test\EndToEndInterface;
+use Civi\Test\HeadlessInterface;
 
 require_once __DIR__ . '/TestCase.php';
 
@@ -9,9 +9,13 @@ require_once __DIR__ . '/TestCase.php';
  *
  * Unit tests for filtering of URLs within HTML.
  *
- * @group e2e
+ * @group headless
  */
-class CRM_Mosaico_UrlFilterTest extends CRM_Mosaico_TestCase implements EndToEndInterface {
+class CRM_Mosaico_UrlFilterTest extends CRM_Mosaico_TestCase implements HeadlessInterface {
+
+  public function setUpHeadless() {
+    return \Civi\Test::headless()->installMe(__DIR__)->apply();
+  }
 
   public function filterExamples() {
     $cases = [];

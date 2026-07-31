@@ -1,0 +1,11 @@
+{
+  "singlePR": {
+    "include": [
+      {
+        "civicrm": "dev-master",
+        "php-versions": "CIVICARROT_PHP_SENSIBLE",
+        "cms": "standalone"
+      }
+    ]
+  }
+}

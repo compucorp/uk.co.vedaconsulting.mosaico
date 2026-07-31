@@ -1,17 +1,21 @@
 <?php
 
 use CRM_Mosaico_ExtensionUtil as E;
-use Civi\Test\EndToEndInterface;
+use Civi\Test\HeadlessInterface;
 
 require_once __DIR__ . '/TestCase.php';
 
 /**
  * Test resize dimension scaling method - adjustResizeDimensions for various sizes.
  *
- * @group e2e
+ * @group headless
  * @see cv
  */
-class CRM_Mosaico_ResizeScaleTest extends CRM_Mosaico_TestCase implements EndToEndInterface {
+class CRM_Mosaico_ResizeScaleTest extends CRM_Mosaico_TestCase implements HeadlessInterface {
+
+  public function setUpHeadless() {
+    return \Civi\Test::headless()->installMe(__DIR__)->apply();
+  }
 
   /**
    * Test adjustResizeDimensions method for various inputs.

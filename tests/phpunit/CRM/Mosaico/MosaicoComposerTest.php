@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Test\EndToEndInterface;
+use Civi\Test\HeadlessInterface;
 
 require_once __DIR__ . '/TestCase.php';
 
@@ -10,9 +10,15 @@ require_once __DIR__ . '/TestCase.php';
  * General integration test for special composition behavior of
  * Mosaico-based mailings.
  *
- * @group e2e
+ * @group headless
  */
-class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements EndToEndInterface {
+class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements HeadlessInterface {
+
+  use \Civi\Test\ContactTestTrait;
+
+  public function setUpHeadless() {
+    return \Civi\Test::headless()->installMe(__DIR__)->apply();
+  }
 
   public function getComposerExamples() {
     $cases = []; // array($field, $inputValue, $expectRegex).
@@ -20,17 +26,17 @@ class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements En
     $cases[] = [
       'body_html',
       '<p>Hello <img noise="1" src="foo.png"> world.</p>',
-      ';noise="1" src="http://[^"]+/foo.png";',
+      ';noise="1" src="https?://[^"]+/foo.png";',
     ];
     $cases[] = [
       'body_text',
       'Go to [show_link]',
-      ';Go to http://[^"]+civicrm/mailing/view;',
+      ';Go to https?://[^"]+civicrm/mailing/view;',
     ];
     $cases[] = [
       'body_text',
       'Go to [unsubscribe_link]',
-      ';Go to http://[^"]+civicrm/mailing/unsubscribe;',
+      ';Go to https?://[^"]+civicrm/mailing/unsubscribe;',
     ];
 
     return $cases;
@@ -52,7 +58,7 @@ class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements En
   public function testMailingPreview($field, $inputValue, $expectRegex): void {
     $this->assertEquals('installed', CRM_Extension_System::singleton()->getManager()->getStatus('org.civicrm.flexmailer'));
 
-    $contactId = $this->getContactId($GLOBALS['_CV']['ADMIN_USER']);
+    $contactId = $this->createLoggedInUser();
 
     $params = [
       'template_type' => 'mosaico',
@@ -78,22 +84,6 @@ class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements En
     $previewResult = $result['values'][$result['id']]['api.Mailing.preview'];
 
     $this->assertMatchesRegularExpression($expectRegex, $previewResult['values'][$field]);
-  }
-
-  protected function getContactId($username) {
-    $config = CRM_Core_Config::singleton();
-
-    $ufID = $config->userSystem->getUfId($username);
-    if (!$ufID) {
-      throw new \RuntimeException("Failed to find user ID: \"$username\"");
-    }
-
-    $contactID = CRM_Core_BAO_UFMatch::getContactId($ufID);
-    if (!$contactID) {
-      throw new \RuntimeException("Failed to find contact ID: \"$username\" / $ufID");
-    }
-
-    return $contactID;
   }
 
 }
