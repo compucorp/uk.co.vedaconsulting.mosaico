@@ -18,8 +18,7 @@ If you wish to develop patches for these, then it will require additional tools 
     * [`nodejs`](https://nodejs.org/en) (*Currently the mosaico build script is requires v18 or v22. You can use
         [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to use multiple versions of nodejs. Eg. `nvm install 22 && nvm use 22`*)
     * [`npm`](https://www.npmjs.com)
-    * [`grunt-cli`](http://gruntjs.com/getting-started)
-    * [`shoreditch`](https://github.com/civicrm/org.civicrm.shoreditch) (*recommended*)
+    * [`grunt-cli`](http://gruntjs.com/getting-started) (*only for Editor Development, see below*)
 
 ## Basic Development
 
@@ -30,21 +29,23 @@ The process is similar to many CiviCRM extensions:
 cd sites/default/files/civicrm/ext
 
 ## Download the extensions
-git clone https://github.com/veda-consulting/uk.co.vedaconsulting.mosaico
+git clone https://lab.civicrm.org/extensions/mosaico.git mosaico
 
 ## Download additional dependencies
-cd uk.co.vedaconsulting.mosaico
+cd mosaico
 composer install
 
 ## Enable the extension via web UI or CLI, e.g.
 cv en mosaico
 ```
 
-At this point, you can iteratively develop patches.  Submit proposed updates via Github pull-requests.
+At this point, you can iteratively develop patches.  Submit proposed updates via GitLab merge requests.
 
 ## Stylesheet Development
 
-This project depends on `sass` to compile its CSS.
+This project depends on `sass` to compile its CSS. Some Bootstrap 3 mixins/variables from the
+[Shoreditch theme](https://github.com/civicrm/org.civicrm.shoreditch) are vendored into `sass/vendor/shoreditch/` (see the
+README there) rather than requiring a separate clone of that extension.
 
 Before you can compile the CSS you need to do the following from within this extension's directory:
 
@@ -58,9 +59,7 @@ You can then compile the Sass from sass/, recreating files in css/ like this:
 ./compile-sass-to-css.sh
 ```
 
-Once you are done making your changes, please use BackstopJS (see [Testing](/testing#backstopjs-visual-regression-testing) to check for any possible visual regression issues.
-
-Commit changes for both SCSS and CSS. Submit proposed updates via Github pull-requests.
+Commit changes for both SCSS and CSS. Submit proposed updates via GitLab merge requests.
 
 ## Editor Development
 
@@ -69,6 +68,9 @@ independent project. The `mosaico` component has its own requirements and workfl
 
 `uk.co.vedaconsulting.mosaico` uses a pre-built copy of `mosaico` (`./packages/mosaico`), so you may work on `uk.co.vedaconsulting.mosaico`
 without needing to understand `mosaico` development.  However, if you are doing development for both, then there are a few important details:
+
+Note: `./packages/mosaico` (along with `./vendor`) is committed directly into this repository, so a fresh `git clone` already has a working
+copy without running `composer install`. Re-run `composer install` and commit the result whenever you update the `mosaico` dependency below.
 
 * __Using `mosaico.git` in the extension__: You may replace the pre-built folder (`./packages/mosaico`) with a git repo. The extension specifically
   uses a fork (https://github.com/civicrm/mosaico) with a few small patches. Typical setup steps:
@@ -94,44 +96,16 @@ without needing to understand `mosaico` development.  However, if you are doing 
     composer update --lock
     ```
 
-## Addendum: Setup.sh
-
-The script `bin/setup.sh` handles various build activities:
-
-```
-## Download dependencies
-./bin/setup.sh -D
-
-## Build zip archive
-./bin/setup.sh -z
-```
-
 ## Addendum: Publication
 
-Whenever a change is merged or pushed to `uk.co.vedaconsulting.mosaico`, a bot on [jenkins test-ci](https://test.civicrm.org/view/Tools/job/Tool-Publish-mosaico/) automatically builds a new `zip` archive
-and publishes [uk.co.vedaconsulting.mosaico-latest.zip](https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/latest/uk.co.vedaconsulting.mosaico-latest.zip).
+Because the composer-managed assets (`./vendor`, `./packages/mosaico`) are committed directly into this repository, any checkout or
+source archive of a commit/tag (eg. `git archive`, or a GitLab/GitHub "Download source" link) is already a complete, installable
+extension — there is no separate build/packaging step required.
 
-The build/publish process has a few properties:
+To publish a new official release to the CiviCRM extension directory:
 
- * It combines [`uk.co.vedaconsulting.mosaico`](https://github.com/veda-consulting/uk.co.vedaconsulting.mosaico),
-   [`civicrm/mosaico`](https://github.com/civicrm/mosaico), and any other runtime dependencies into one `zip` file.
- * The version number is determined by reading `info.xml` (`<version>`) and appending the current Unix timestamp.
-   * Example: If the `version` is declared as `1.0.beta1`, then it will be published as `1.0.beta1.1478151288`.
- * Three files are published:
-   * The `zip` archive
-   * The new `info.xml` file
-   * A JSON document describing the build.
- * An alias is provided under the folder `latest`.
-
-The bot does *not* publish the new version to `civicrm.org`.  To do this, download the `latest.zip` to get the version from the info.xml (
-eg. `2.5.1597918155`).
-
-Then add the actual release zip file to the release node on `https://civicrm.org/extensions/email-template-builder`.
-
-Example filename: `https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/2.5.1597918155/uk.co.vedaconsulting.mosaico-2.5.1597918155.zip`
-
-### Currently you should trigger manually the following hooks:
-
-* https://civicrm.org/extdir-backend/scan/5243 - this triggers the release process on https://civicrm.org/extensions, generates the unpublished release node and sends an email with a link to that node.
-* https://docs.civicrm.org/admin/publish/mosaico - this forces an update of the mosaico docs
+* Bump `<version>` (and `<releaseDate>`) in `info.xml`, and tag the release in git.
+* Trigger https://civicrm.org/extdir-backend/scan/5243 - this triggers the release process on https://civicrm.org/extensions, generates the unpublished release node and sends an email with a link to that node.
+* Trigger https://docs.civicrm.org/admin/publish/mosaico - this forces an update of the mosaico docs
+* Add the actual release archive to the release node on `https://civicrm.org/extensions/email-template-builder`.
 
