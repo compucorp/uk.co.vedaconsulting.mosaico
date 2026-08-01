@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-org.civicrm.shoreditch
 
 # Unused intermediate build output from the vendored mosaico package (superseded by packages/mosaico/dist).
 packages/mosaico/build/

@@ -12,16 +12,6 @@ then
   exit 1
 fi
 
-if [[ ! -d org.civicrm.shoreditch ]]
-then
-  echo "Annoyingly, this project requires the Shoreditch theme to be cloned"
-  echo "because we import a copy of its SASS in building ours."
-  echo ""
-  echo "Please run: git clone 'git@github.com:civicrm/org.civicrm.shoreditch.git'"
-  echo "Then try this again."
-  exit 1
-fi
-
 node_modules/.bin/sass \
   sass/mosaico-bootstrap.scss:css/mosaico-bootstrap.css \
   sass/legacy.scss:css/legacy.css \

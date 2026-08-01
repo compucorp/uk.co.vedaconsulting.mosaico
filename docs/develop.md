@@ -18,8 +18,7 @@ If you wish to develop patches for these, then it will require additional tools 
     * [`nodejs`](https://nodejs.org/en) (*Currently the mosaico build script is requires v18 or v22. You can use
         [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to use multiple versions of nodejs. Eg. `nvm install 22 && nvm use 22`*)
     * [`npm`](https://www.npmjs.com)
-    * [`grunt-cli`](http://gruntjs.com/getting-started)
-    * [`shoreditch`](https://github.com/civicrm/org.civicrm.shoreditch) (*recommended*)
+    * [`grunt-cli`](http://gruntjs.com/getting-started) (*only for Editor Development, see below*)
 
 ## Basic Development
 
@@ -44,7 +43,9 @@ At this point, you can iteratively develop patches.  Submit proposed updates via
 
 ## Stylesheet Development
 
-This project depends on `sass` to compile its CSS.
+This project depends on `sass` to compile its CSS. Some Bootstrap 3 mixins/variables from the
+[Shoreditch theme](https://github.com/civicrm/org.civicrm.shoreditch) are vendored into `sass/vendor/shoreditch/` (see the
+README there) rather than requiring a separate clone of that extension.
 
 Before you can compile the CSS you need to do the following from within this extension's directory:
 
