@@ -18,6 +18,6 @@
   },
   "homepage": "https://lab.civicrm.org/extensions/mosaico#readme",
   "devDependencies": {
-    "sass": "^1.70.0"
+    "sass": "^1.102.0"
   }
 }
