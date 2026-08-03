@@ -1,6 +1,21 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
+## Release 3.13 (not yet released)
+
+* [!718](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/718) Upgrade Intervention library to v3.
+* [!717](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/717) Fix [#704](https://lab.civicrm.org/extensions/mosaico/-/issues/704) placeholder images not displaying due to missing freetype dependency; prefer imagick over gd for the 'auto' graphic driver.
+* [!719](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/719) Update composer dependencies.
+* [!720](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/720) Fix typo in permission name.
+* [!721](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/721) Prevent session error after streaming image in sendImage().
+* [!722](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/722) Fix test failures on PHP 8.5, convert Graphics Intervention test to headless rather than e2e.
+* [!716](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/716) Fix Mosaico iframe positioning on Joomla 4/5 (Atum template).
+* [!726](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/726) Bundle composer-managed assets (`vendor/`, `packages/mosaico`) directly into the repo, so a checkout/tag archive is a complete, installable extension with no separate build step.
+* [!727](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/727) Clean up outdated build tooling and dead CSS/SCSS.
+* [!725](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/725) Remove CSS override of core's mailing-preview dialog.
+* [!728](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/728) Update docs to reflect that release/publish are automatic GitLab webhooks; move `composer-downloads-plugin` to require-dev.
+* Update link for issue tracker to GitLab.
+
 ## Release 3.12 (2026-03-19)
 
 * Revert !708 because it is causing syntax errors per https://lab.civicrm.org/extensions/mosaico/-/merge_requests/712 and others.
