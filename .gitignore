@@ -3,3 +3,7 @@ node_modules/
 
 # Unused intermediate build output from the vendored mosaico package (superseded by packages/mosaico/dist).
 packages/mosaico/build/
+
+# require-dev only (build-time downloader for packages/mosaico, which is committed above); not needed at runtime.
+vendor/civicrm/composer-downloads-plugin/
+vendor/civicrm/gitignore/

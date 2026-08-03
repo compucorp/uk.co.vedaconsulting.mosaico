@@ -105,7 +105,6 @@ extension — there is no separate build/packaging step required.
 To publish a new official release to the CiviCRM extension directory:
 
 * Bump `<version>` (and `<releaseDate>`) in `info.xml`, and tag the release in git.
-* Trigger https://civicrm.org/extdir-backend/scan/5243 - this triggers the release process on https://civicrm.org/extensions, generates the unpublished release node and sends an email with a link to that node.
-* Trigger https://docs.civicrm.org/admin/publish/mosaico - this forces an update of the mosaico docs
-* Add the actual release archive to the release node on `https://civicrm.org/extensions/email-template-builder`.
+* Tagging the release automatically triggers https://civicrm.org/extdir-backend/scan/5243 (via a GitLab webhook on release/tag-push events) - this publishes the release automatically to https://civicrm.org/extensions. No manual trigger is needed.
+* Pushing to the repository automatically triggers https://docs.civicrm.org/admin/publish/mosaico (via a GitLab webhook on push events), keeping the mosaico docs up to date. No manual trigger is needed.
 

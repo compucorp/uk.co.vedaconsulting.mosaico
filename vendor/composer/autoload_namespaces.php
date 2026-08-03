@@ -6,5 +6,4 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'TOGoS_GitIgnore_' => array($vendorDir . '/civicrm/gitignore/src/main/php'),
 );
