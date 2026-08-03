@@ -7,10 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInitecd796483fd25f26fa63d6789726ccd4
 {
     public static $prefixLengthsPsr4 = array (
-        'L' =>
-        array (
-            'LastCall\\DownloadsPlugin\\' => 25,
-        ),
         'I' =>
         array (
             'Intervention\\Image\\' => 19,
@@ -19,10 +15,6 @@ class ComposerStaticInitecd796483fd25f26fa63d6789726ccd4
     );
 
     public static $prefixDirsPsr4 = array (
-        'LastCall\\DownloadsPlugin\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/civicrm/composer-downloads-plugin/src',
-        ),
         'Intervention\\Image\\' =>
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src',
@@ -30,16 +22,6 @@ class ComposerStaticInitecd796483fd25f26fa63d6789726ccd4
         'Intervention\\Gif\\' =>
         array (
             0 => __DIR__ . '/..' . '/intervention/gif/src',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'T' =>
-        array (
-            'TOGoS_GitIgnore_' =>
-            array (
-                0 => __DIR__ . '/..' . '/civicrm/gitignore/src/main/php',
-            ),
         ),
     );
 
@@ -52,7 +34,6 @@ class ComposerStaticInitecd796483fd25f26fa63d6789726ccd4
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitecd796483fd25f26fa63d6789726ccd4::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitecd796483fd25f26fa63d6789726ccd4::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitecd796483fd25f26fa63d6789726ccd4::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitecd796483fd25f26fa63d6789726ccd4::$classMap;
 
         }, null, ClassLoader::class);

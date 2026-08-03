@@ -2,7 +2,9 @@
   "name": "civipkg/uk.co.vedaconsulting.mosaico",
   "type": "civicrm-ext",
   "require": {
-    "intervention/image": "^3.0",
+    "intervention/image": "^3.0"
+  },
+  "require-dev": {
     "civicrm/composer-downloads-plugin": "^3.0 || ^4.0"
   },
   "replace": {
