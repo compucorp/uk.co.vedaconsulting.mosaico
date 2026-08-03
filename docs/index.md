@@ -21,9 +21,6 @@ View/Download this extension in the [Extension Directory](https://civicrm.org/ex
 
 For help installing extensions, please see the [Install a New Extension section of the Extensions chapter](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#installing-a-new-extension) in the SysAdmin Guide.
 
-!!! warning "DO NOT DOWNLOAD DIRECTLY FROM GITHUB"
-    Download Mosaico from the [Mosaico page on the CiviCRM extensions directory](https://civicrm.org/extensions/email-template-builder) as the Mosaico extension requires additional packaging steps for a working release!
-
 ## Getting started (Usage)
 
 If you haven't used Mosaico before, consult the the demo and tutorial materials from [Mosaico.io](https://mosaico.io/index.html).
