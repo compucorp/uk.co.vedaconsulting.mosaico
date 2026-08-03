@@ -23,9 +23,9 @@
     <url desc="Support">https://lab.civicrm.org/extensions/mosaico/-/work_items</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2026-05-28</releaseDate>
-  <version>3.13</version>
-  <develStage>stable</develStage>
+  <releaseDate>2026-08-03</releaseDate>
+  <version>3.13-dev</version>
+  <develStage>beta</develStage>
   <compatibility>
     <ver>6.12</ver>
   </compatibility>
@@ -38,7 +38,6 @@
     <ver>8.3</ver>
     <ver>8.4</ver>
   </php_compatibility>
-  <comments>To help contribute please contact us on support@vedaconsulting.co.uk or initiate a conversation / issue on github.</comments>
   <civix>
     <namespace>CRM/Mosaico</namespace>
     <format>25.10.2</format>
