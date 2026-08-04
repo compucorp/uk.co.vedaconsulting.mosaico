@@ -14,6 +14,7 @@ Download via [the extensions directory](https://civicrm.org/extensions/email-tem
 * [!727](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/727) Clean up outdated build tooling and dead CSS/SCSS.
 * [!725](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/725) Remove CSS override of core's mailing-preview dialog.
 * [!728](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/728) Update docs to reflect that release/publish are automatic GitLab webhooks; move `composer-downloads-plugin` to require-dev.
+* [!724](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/724) Fix: restore FlexMailer's default composer after composing a Mosaico mailing (follow-up to !675).
 * Update link for issue tracker to GitLab.
 
 ## Release 3.12 (2026-03-19)
