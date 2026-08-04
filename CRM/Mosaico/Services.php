@@ -25,6 +25,7 @@ class CRM_Mosaico_Services {
     $container->setDefinition('mosaico_graphics', new Definition('CRM_Mosaico_Graphics_Interface'))
       ->setFactory([__CLASS__, 'createGraphics'])->setPublic(TRUE);
     $container->setDefinition('mosaico_ab_demux', new Definition('CRM_Mosaico_AbDemux'))->setPublic(TRUE);
+    $container->setDefinition('mosaico_default_composer_scope', new Definition('CRM_Mosaico_DefaultComposerScope'))->setPublic(TRUE);
 
     foreach (self::getListenerSpecs() as $listenerSpec) {
       $container->findDefinition('dispatcher')->addMethodCall('addListenerService', $listenerSpec);
@@ -38,7 +39,9 @@ class CRM_Mosaico_Services {
     $listenerSpecs = [];
 
     $listenerSpecs[] = [\Civi\FlexMailer\Validator::EVENT_CHECK_SENDABLE, ['mosaico_required_tokens', 'onCheckSendable'], FM::WEIGHT_MAIN];
+    $listenerSpecs[] = [FM::EVENT_COMPOSE, ['mosaico_default_composer_scope', 'onStartCompose'], FM::WEIGHT_START];
     $listenerSpecs[] = [FM::EVENT_COMPOSE, ['mosaico_flexmail_composer', 'onCompose'], FM::WEIGHT_MAIN];
+    $listenerSpecs[] = [FM::EVENT_COMPOSE, ['mosaico_default_composer_scope', 'onEndCompose'], FM::WEIGHT_END];
     $listenerSpecs[] = [FM::EVENT_COMPOSE, ['mosaico_flexmail_url_filter', 'onCompose'], FM::WEIGHT_ALTER - 100];
     $listenerSpecs[] = ['hook_civicrm_alterMailContent', ['mosaico_image_filter', 'alterMailContent']];
 
