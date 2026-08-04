@@ -26,6 +26,11 @@ class CRM_Mosaico_DefaultComposerScopeTest extends CRM_Mosaico_TestCase implemen
    */
   private $contactId;
 
+  /**
+   * @var bool
+   */
+  private $defaultComposerWasActive;
+
   public function setUpHeadless() {
     return \Civi\Test::headless()->installMe(__DIR__)->apply();
   }
@@ -34,12 +39,13 @@ class CRM_Mosaico_DefaultComposerScopeTest extends CRM_Mosaico_TestCase implemen
     parent::setUp();
     $this->assertEquals('installed', CRM_Extension_System::singleton()->getManager()->getStatus('org.civicrm.flexmailer'));
     $this->contactId = $this->createLoggedInUser();
+    $this->defaultComposerWasActive = $this->getDefaultComposer()->isActive();
   }
 
   public function tearDown(): void {
     // A failed assertion can leave the singleton disabled, which would empty
     // the mailings of every later test in this process.
-    $this->getDefaultComposer()->setActive(TRUE);
+    $this->getDefaultComposer()->setActive($this->defaultComposerWasActive);
     parent::tearDown();
   }
 
