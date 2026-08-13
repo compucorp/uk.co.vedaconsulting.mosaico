@@ -76,4 +76,9 @@
     </select>
   </div>
 
+  <details class="crm-accordion-bold" ng-repeat="group in crmMailingConst.customGroups">
+    <summary>{{:: group.title }}</summary>
+    <div ng-include="group.template"></div>
+  </details>
+
 </div>
