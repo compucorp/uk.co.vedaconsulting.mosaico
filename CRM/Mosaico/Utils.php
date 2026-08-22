@@ -127,7 +127,7 @@ class CRM_Mosaico_Utils {
    * @see getLayoutOptions()
    */
   public static function getLayoutPath() {
-    $layout = CRM_Core_BAO_Setting::getItem('Mosaico Preferences', 'mosaico_layout');
+    $layout = Civi::settings()->get('mosaico_layout');
     $prefix = '~/crmMosaico/EditMailingCtrl';
 
     $paths = [
