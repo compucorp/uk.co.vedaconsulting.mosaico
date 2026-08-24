@@ -1,7 +1,7 @@
 **DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
 Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
 
-## Release 3.13 (not yet released)
+## Release 3.13 (2026-08-24)
 
 * [!718](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/718) Upgrade Intervention library to v3.
 * [!717](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/717) Fix [#704](https://lab.civicrm.org/extensions/mosaico/-/issues/704) placeholder images not displaying due to missing freetype dependency; prefer imagick over gd for the 'auto' graphic driver.
@@ -15,6 +15,8 @@ Download via [the extensions directory](https://civicrm.org/extensions/email-tem
 * [!725](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/725) Remove CSS override of core's mailing-preview dialog.
 * [!728](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/728) Update docs to reflect that release/publish are automatic GitLab webhooks; move `composer-downloads-plugin` to require-dev.
 * [!724](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/724) Fix: restore FlexMailer's default composer after composing a Mosaico mailing (follow-up to !675).
+* [!723](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/723) Support custom mailing data.
+* [!731](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/731) Replace deprecated `CRM_Core_BAO_Setting::getItem` with `Civi::settings()`.
 * Update link for issue tracker to GitLab.
 
 ## Release 3.12 (2026-03-19)
