@@ -103,8 +103,7 @@ class CRM_Mosaico_Graphics_Intervention extends CRM_Mosaico_Graphics_Interface {
     $this->adjustResizeDimensions($img->width(), $img->height(), $width, $height);
 
     if ($width && $height) {
-      // Two dimensions means "inside the dimensions" (see the interface docblock and Mosaico's
-      // backend spec), so the aspect ratio is preserved. resize() would stretch to exactly WxH.
+      // "Inside the dimensions" per the interface docblock: resize() would stretch to exactly WxH.
       $img->scale($width, $height);
     }
     elseif ($width && !$height) {
