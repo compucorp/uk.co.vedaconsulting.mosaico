@@ -1,0 +1,20 @@
+# Shared templates, maintained at https://lab.civicrm.org/infra/extension-ci
+#
+# lint.yml gives civilint, PHPCompatibility and jshint; karma.yml runs the
+# JavaScript unit tests, and creates no job until tests/karma/karma.conf.cjs
+# exists; composer.yml publishes a tag to this project's Composer registry.
+# None of the lint or test jobs needs CiviCRM, a database or a CMS - PHPUnit
+# stays with CiviCARROT.
+
+variables:
+  # packages/ holds the committed mosaico JS distribution: third-party build
+  # output, not this extension's code.
+  LINT_EXCLUDE: '^(vendor|node_modules|packages)/'
+
+include:
+  - project: 'infra/extension-ci'
+    ref: main
+    file:
+      - '/lint.yml'
+      - '/karma.yml'
+      - '/composer.yml'
