@@ -15,6 +15,22 @@ These tests verify that the Mosaico data can be read and written.
 phpunit9 tests/phpunit/CRM
 ```
 
+## Automated Tests: JavaScript
+
+Unit tests for the AngularJS code, run in headless Chrome via
+[karma](https://karma-runner.github.io/). These need node and a Chrome or
+Chromium binary, but no CiviCRM, database or CMS - the globals CiviCRM would
+provide are stubbed in `tests/karma/bootstrap.js`.
+
+```
+npm install
+npm test
+```
+
+Set `CHROME_BIN` if the browser is not on the default search path. The config
+lists the files under test explicitly rather than globbing `ang/`, so a spec
+for another file adds it to `files` in `tests/karma/karma.conf.cjs`.
+
 ## Manual Tests: Save/Load Mailing
 
 1. Create a mailing

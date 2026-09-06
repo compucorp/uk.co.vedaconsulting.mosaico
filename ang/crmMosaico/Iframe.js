@@ -30,7 +30,10 @@
           for (var i = 0; i < topNavSelectors.length; i++) {
             var sel = topNavSelectors[i];
             if (sel && $(sel).length > 0 && $(sel).is(':visible')) {
-              var navBottom = $(sel).outerHeight() + $(sel).offset().top;
+              // The iframe is position:fixed, so what matters is the navbar's
+              // viewport-relative bottom; a fixed navbar's document offset grows
+              // with the scroll position.
+              var navBottom = $(sel)[0].getBoundingClientRect().bottom;
               if (navBottom > top) top = navBottom;
             }
           }
