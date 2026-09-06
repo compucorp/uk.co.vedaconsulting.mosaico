@@ -114,4 +114,24 @@ class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase impleme
     $this->assertStringStartsWith("\x89PNG", $output); // PNG magic bytes
   }
 
+
+  /**
+   * A source whose aspect ratio differs from the target must be fitted INSIDE the box rather than
+   * stretched to fill it. testCreateResizedImageBothDimensions cannot catch this: its 400x300
+   * fixture already has the target aspect ratio, so it passes either way.
+   */
+  public function testCreateResizedImageBothDimensionsPreservesAspectRatio(): void {
+    $src  = $this->tmpDir . '/src-wide.png';
+    $dest = $this->tmpDir . '/resized-wide.png';
+    $this->createSourcePng(600, 200, $src);
+
+    $intervention = new CRM_Mosaico_Graphics_Intervention(['driver' => 'gd']);
+    $intervention->createResizedImage($src, $dest, 90, 90);
+
+    $this->assertFileExists($dest);
+    [$w, $h] = getimagesize($dest);
+    $this->assertEquals(90, $w);
+    $this->assertEquals(30, $h);
+  }
+
 }

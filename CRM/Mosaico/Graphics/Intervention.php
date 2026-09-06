@@ -103,7 +103,8 @@ class CRM_Mosaico_Graphics_Intervention extends CRM_Mosaico_Graphics_Interface {
     $this->adjustResizeDimensions($img->width(), $img->height(), $width, $height);
 
     if ($width && $height) {
-      $img->resize($width, $height);
+      // "Inside the dimensions" per the interface docblock: resize() would stretch to exactly WxH.
+      $img->scale($width, $height);
     }
     elseif ($width && !$height) {
       $mobileMinWidth = $config['MOBILE_MIN_WIDTH'];
