@@ -40,6 +40,7 @@ class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase impleme
     imagefill($img, 0, 0, $white);
     imagepng($img, $path);
     if (version_compare(PHP_VERSION, '8.5', '<')) {
+      // phpcs:ignore PHPCompatibility.FunctionUse.RemovedFunctions.imagedestroyDeprecated
       imagedestroy($img);
     }
   }
@@ -111,9 +112,9 @@ class CRM_Mosaico_Graphics_InterventionTest extends CRM_Mosaico_TestCase impleme
     $intervention->sendPlaceholder(200, 100);
     $output = ob_get_clean();
 
-    $this->assertStringStartsWith("\x89PNG", $output); // PNG magic bytes
+    // PNG magic bytes
+    $this->assertStringStartsWith("\x89PNG", $output);
   }
-
 
   /**
    * A source whose aspect ratio differs from the target must be fitted INSIDE the box rather than

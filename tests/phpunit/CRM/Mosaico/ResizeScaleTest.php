@@ -62,7 +62,7 @@ class CRM_Mosaico_ResizeScaleTest extends CRM_Mosaico_TestCase implements Headle
     $resizeWidth  = 258;
     $resizeHeight = 100;
     $sf = $graphics->adjustResizeDimensions(358, 200, $resizeWidth, $resizeHeight);
-    // dimensions should be almost same as that of image ignoring the scaling config, 
+    // dimensions should be almost same as that of image ignoring the scaling config,
     // keeping the ratio of resize dimensions
     $this->assertEquals(round($sf * 258), $resizeWidth);
     $this->assertEquals(round($sf * 100), $resizeHeight);

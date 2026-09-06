@@ -1,8 +1,9 @@
 <?php
 
 ini_set('memory_limit', '2G');
-ini_set('safe_mode', 0);
 define('CIVICRM_CONTAINER_CACHE', 'never');
+// cv returns CiviCRM's bootstrap as PHP source, so there is nothing to include.
+// phpcs:ignore Drupal.Functions.DiscouragedFunctions.Discouraged
 eval(cv('php:boot --level=classloader', 'phpcode'));
 
 /**

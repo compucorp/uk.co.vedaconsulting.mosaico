@@ -36,4 +36,5 @@ class CRM_Mosaico_Form_Task_AdhocMailingTraditional extends CRM_Contact_Form_Tas
 
     CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/a/', NULL, TRUE, '/mailing/' . $mailing['id']));
   }
+
 }

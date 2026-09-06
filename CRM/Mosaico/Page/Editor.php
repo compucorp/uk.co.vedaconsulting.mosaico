@@ -145,6 +145,9 @@ class CRM_Mosaico_Page_Editor extends CRM_Core_Page {
    */
   protected function getMaxFileSize() {
     $fakeUnlimited = 25 * 1024 * 1024;
+    // ini_parse_quantity() is PHP 8.2+, but symfony/polyfill-php82 - required and
+    // autoloaded by core - supplies it on 8.1, which a static scan cannot see.
+    // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctions.ini_parse_quantityFound
     $iniVal = ini_get('upload_max_filesize') ? ini_parse_quantity(ini_get('upload_max_filesize')) : $fakeUnlimited;
     $settingVal = Civi::settings()->get('maxFileSize') ? (1024 * 1024 * Civi::settings()->get('maxFileSize')) : $fakeUnlimited;
     return (int) min($iniVal, $settingVal);

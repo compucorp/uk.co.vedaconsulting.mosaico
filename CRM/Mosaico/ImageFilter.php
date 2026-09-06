@@ -35,7 +35,7 @@ class CRM_Mosaico_ImageFilter extends \Civi\FlexMailer\Listener\BaseListener {
 
     $e->content = preg_replace_callback(
       "/src=\".+img[\/]?\?src=(" . $mosaico_image_upload_dir . ")(.+)&.*\"/U",
-      function($matches){
+      function($matches) {
         return "src=\"" . rawurldecode($matches[1]) . "static/" . rawurldecode($matches[2]) . "\"";
       },
       $e->content
