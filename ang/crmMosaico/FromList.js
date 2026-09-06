@@ -22,7 +22,7 @@
             crmMosaicoVariants.split(scope.mailing, 'replyto_email');
           }
 
-        }
+        };
         scope.rmFrom = function(vid) {
           crmMosaicoVariants.remove(scope.mailing, 'from_email', vid);
           crmMosaicoVariants.remove(scope.mailing, 'from_name', vid);
@@ -30,10 +30,10 @@
             // Ugh. Brain hurts. See also: crmMailingFromAddress (CRM-18364 behavior)
             crmMosaicoVariants.remove(scope.mailing, 'replyto_email', vid);
           }
-        }
+        };
         scope.isSplit = function() {
-          return crmMosaicoVariants.isSplit(scope.mailing, 'from_email')
-        }
+          return crmMosaicoVariants.isSplit(scope.mailing, 'from_email');
+        };
         scope.labels = crmMosaicoVariants.getLabels();
       }
     };

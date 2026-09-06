@@ -16,7 +16,7 @@
     $scope.getDesigns = function(mailing) {
       if (!mailing) return [];
       return crmMosaicoVariants.isSplit(mailing, 'body_html') ? abDesign : singleDesign;
-    }
+    };
     $scope.unsplitDesign = function(mailing, vid) {
       crmMosaicoVariants.remove(mailing, ['mosaicoTemplate', 'mosaicoMetadata', 'mosaicoContent', 'body_html'], vid);
     };
