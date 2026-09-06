@@ -17,14 +17,14 @@ class MosaicoTemplate extends Generic\DAOEntity {
     return [
       'get' => ['access CiviCRM'],
       'create' => [
-        ['edit message templates', 'edit user driven message templates']
+        ['edit message templates', 'edit user driven message templates'],
       ],
       'update' => [
-        ['edit message templates', 'edit user driven message templates']
+        ['edit message templates', 'edit user driven message templates'],
       ],
       'delete' => [
-        ['edit message templates', 'edit user driven message templates']
-      ]
+        ['edit message templates', 'edit user driven message templates'],
+      ],
     ];
   }
 

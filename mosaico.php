@@ -251,7 +251,6 @@ function mosaico_civicrm_mailingTemplateTypes(&$types) {
  * Implements hook_civicrm_entityTypes().
  */
 
-
 /**
  * Implements hook_civicrm_pre().
  */
@@ -280,8 +279,8 @@ function mosaico_civicrm_searchTasks($objectName, &$tasks) {
   if ($objectName == 'contact') {
     if (CRM_Core_Permission::access('CiviMail')) {
       $tasks[] = [
-          'title' => E::ts('Email - schedule/send via CiviMail (traditional)'),
-          'class' => 'CRM_Mosaico_Form_Task_AdhocMailingTraditional',
+        'title' => E::ts('Email - schedule/send via CiviMail (traditional)'),
+        'class' => 'CRM_Mosaico_Form_Task_AdhocMailingTraditional',
       ];
     }
   }

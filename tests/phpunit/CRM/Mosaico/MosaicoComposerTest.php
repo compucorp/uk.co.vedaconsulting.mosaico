@@ -21,7 +21,8 @@ class CRM_Mosaico_MosaicoComposerTest extends CRM_Mosaico_TestCase implements He
   }
 
   public function getComposerExamples() {
-    $cases = []; // array($field, $inputValue, $expectRegex).
+    // array($field, $inputValue, $expectRegex).
+    $cases = [];
 
     $cases[] = [
       'body_html',

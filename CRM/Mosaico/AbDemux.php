@@ -196,9 +196,9 @@ class CRM_Mosaico_AbDemux {
     ]);
 
     return civicrm_api3_create_success([
-        $a['id'] => $reloadA + [
-          '_mailing_ab' => $ab['values'][$ab['id']],
-        ],
+      $a['id'] => $reloadA + [
+        '_mailing_ab' => $ab['values'][$ab['id']],
+      ],
     ]);
   }
 

@@ -84,6 +84,7 @@ class CRM_Mosaico_UrlFilterTest extends CRM_Mosaico_TestCase implements Headless
   }
 
   /**
+   * @param string $baseUrl
    * @param string $inputHtml
    * @param string $expectHtml
    * @dataProvider filterExamples
@@ -96,6 +97,7 @@ class CRM_Mosaico_UrlFilterTest extends CRM_Mosaico_TestCase implements Headless
   }
 
   /**
+   * @param string $baseUrl
    * @param string $inputHtml
    * @param string $expectHtml
    * @dataProvider filterExamples

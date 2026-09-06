@@ -1,5 +1,6 @@
 <?php
 use CRM_Mosaico_ExtensionUtil as E;
+
 return [
   'mosaico_layout' => [
     'group_name' => 'Mosaico Preferences',
@@ -20,7 +21,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('How should the CiviMail composition screen look?'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 10]]
+    'settings_pages' => ['mosaico' => ['weight' => 10]],
   ],
   'mosaico_graphics' => [
     'group_name' => 'Mosaico Preferences',
@@ -41,7 +42,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('Which backend should process images?'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 20]]
+    'settings_pages' => ['mosaico' => ['weight' => 20]],
   ],
   'mosaico_scale_factor1' => [
     'group_name' => 'Mosaico Preferences',
@@ -62,7 +63,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('for resize of images with width'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 50]]
+    'settings_pages' => ['mosaico' => ['weight' => 50]],
   ],
   'mosaico_scale_factor2' => [
     'group_name' => 'Mosaico Preferences',
@@ -83,7 +84,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('for resize of images with width'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 70]]
+    'settings_pages' => ['mosaico' => ['weight' => 70]],
   ],
   'mosaico_scale_width_limit1' => [
     'group_name' => 'Mosaico Preferences',
@@ -104,7 +105,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('When uploading images, the mosaico editor trims it down to very required size (in pixels). Use scale factor setting to keep some buffer (2x or 3x) so upscale doesn\'t look distorted or low resolution. Example') . '<br/>' . E::ts('3x => Upto 285 pixels (covers both 2 and 3 column block images)') . '<br/>' . E::ts('2x => All other sizes (single column block images)'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 60]]
+    'settings_pages' => ['mosaico' => ['weight' => 60]],
   ],
   'mosaico_scale_width_limit2' => [
     'group_name' => 'Mosaico Preferences',
@@ -125,7 +126,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('When uploading images, the mosaico editor trims it down to very required size (in pixels). Use scale factor setting to keep some buffer (2x or 3x) so upscale doesn\'t look distorted or low resolution. Example') . '<br/>' . E::ts('3x => Upto 285 pixels (covers both 2 and 3 column block images)') . '<br/>' . E::ts('2x => All other sizes (single column block images)'),
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 80]]
+    'settings_pages' => ['mosaico' => ['weight' => 80]],
   ],
   'mosaico_custom_templates_dir' => [
     'group_name' => 'Mosaico Preferences',
@@ -143,7 +144,7 @@ return [
     'is_contact' => 0,
     'description' => NULL,
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 30]]
+    'settings_pages' => ['mosaico' => ['weight' => 30]],
   ],
   'mosaico_custom_templates_url' => [
     'group_name' => 'Mosaico Preferences',
@@ -161,7 +162,7 @@ return [
     'is_contact' => 0,
     'description' => NULL,
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 40]]
+    'settings_pages' => ['mosaico' => ['weight' => 40]],
   ],
   'mosaico_hide_base_templates' => [
     'group_name' => 'Mosaico Preferences',
@@ -183,7 +184,7 @@ return [
     'is_contact' => 0,
     'description' => NULL,
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 90]]
+    'settings_pages' => ['mosaico' => ['weight' => 90]],
   ],
   'mosaico_hotlist_tokens' => [
     'group_name' => 'Mosaico Preferences',
@@ -210,7 +211,7 @@ return [
     'is_contact' => 0,
     'description' => NULL,
     'help_text' => NULL,
-    'settings_pages' => ['mosaico' => ['weight' => 90]]
+    'settings_pages' => ['mosaico' => ['weight' => 90]],
   ],
   'mosaico_custom_theme_colors' => [
     'name' => 'mosaico_custom_theme_colors',
@@ -225,6 +226,6 @@ return [
     'description' => E::ts('Add a comma-separated list of css color values to override the default palette in the color picker'),
     'is_domain' => 1,
     'default' => '',
-    'settings_pages' => ['mosaico' => ['weight' => 100]]
+    'settings_pages' => ['mosaico' => ['weight' => 100]],
   ],
 ];

@@ -192,7 +192,7 @@ class CRM_Mosaico_Upgrader extends CRM_Extension_Upgrader_Base {
 
   /**
    * Add domain_id to the civicrm_mosaico_template table.
-  */
+   */
   public function upgrade_4707() {
     $this->ctx->log->info('Applying update 4707');
 

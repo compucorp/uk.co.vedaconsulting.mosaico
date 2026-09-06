@@ -46,6 +46,7 @@ class CRM_Mosaico_ImageFilterTest extends CRM_Mosaico_TestCase implements Headle
   }
 
   /**
+   * @param array $config
    * @param string $inputHtml
    * @param string $expectHtml
    * @dataProvider filterExamples
@@ -57,7 +58,7 @@ class CRM_Mosaico_ImageFilterTest extends CRM_Mosaico_TestCase implements Headle
         'subject' => 'ignore',
         'text' => 'ignore',
         'html' => $inputHtml,
-      ]
+      ],
     ]);
     $filter->alterMailContent($e);
     $this->assertEquals('ignore', $e->content['subject']);

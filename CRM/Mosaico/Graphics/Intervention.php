@@ -56,8 +56,8 @@ class CRM_Mosaico_Graphics_Intervention extends CRM_Mosaico_Graphics_Interface {
     $size = 40;
     while ($y < $height) {
       $points1 = [
-        ["x" => $x,             "y" => $y],
-        ["x" => $x + $size,     "y" => $y],
+        ["x" => $x, "y" => $y],
+        ["x" => $x + $size, "y" => $y],
         ["x" => $x + $size * 2, "y" => $y + $size],
         ["x" => $x + $size * 2, "y" => $y + $size * 2],
       ];
@@ -68,9 +68,9 @@ class CRM_Mosaico_Graphics_Intervention extends CRM_Mosaico_Graphics_Interface {
         $polygon->background('#808080');
       });
       $points2 = [
-        ["x" => $x,         "y" => $y + $size],
+        ["x" => $x, "y" => $y + $size],
         ["x" => $x + $size, "y" => $y + $size * 2],
-        ["x" => $x,         "y" => $y + $size * 2],
+        ["x" => $x, "y" => $y + $size * 2],
       ];
       $img->drawPolygon(function ($polygon) use ($points2) {
         foreach ($points2 as $p) {

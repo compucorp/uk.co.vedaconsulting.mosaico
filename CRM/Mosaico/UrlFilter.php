@@ -12,7 +12,7 @@ use Civi\FlexMailer\Listener\SimpleFilter;
 class CRM_Mosaico_UrlFilter extends \Civi\FlexMailer\Listener\BaseListener {
 
   /**
-   * @var string|NULL
+   * @var string|null
    */
   protected $baseUrl = NULL;
 
