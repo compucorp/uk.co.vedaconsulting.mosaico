@@ -1,6 +1,3 @@
-**DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
-Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
-
 ## Release 3.14.0 (2026-09-06)
 
 * [!733](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/733) Fix `createResizedImage()` to preserve the aspect ratio when both dimensions are given.
