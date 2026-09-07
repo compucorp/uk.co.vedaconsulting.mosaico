@@ -1,5 +1,8 @@
-**DO NOT DOWNLOAD DIRECTLY FROM GITHUB**
-Download via [the extensions directory](https://civicrm.org/extensions/email-template-builder) as there are additional packaging requirements not handled by github.
+## Release 3.14.0 (2026-09-06)
+
+* [!733](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/733) Fix `createResizedImage()` to preserve the aspect ratio when both dimensions are given.
+* [!734](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/734) Fix [#712](https://lab.civicrm.org/extensions/mosaico/-/issues/712) editor opening part-way down the page when the page is scrolled (regression in 3.13).
+* [!735](https://lab.civicrm.org/extensions/mosaico/-/merge_requests/735) Run civilint, PHPCompatibility, jshint and the new JavaScript unit tests on GitLab CI.
 
 ## Release 3.13 (2026-08-24)
 
