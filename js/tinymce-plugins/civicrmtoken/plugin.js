@@ -79,15 +79,64 @@ tinymce.PluginManager.add('civicrmtoken', function(editor, pluginUrl) {
 
   editor.addCommand('civicrmtoken', function(ui, v) {
     var win = null;
+    // Controls are created once per dialog, so cache them after it opens.
+    var filterCtrls = null;
+    var gridCtrl = null;
+    var filterTimer = null;
+    var pendingFilter = null;
+    var currentFilter = '';
+    var FILTER_DELAY = 150;
 
     function setFilter(text) {
-      text = text.toLowerCase();
-      win.find('button').each(function(btn){
-        btn.visible(btn.data.data.searchText.indexOf(text) >= 0);
-      });
-      win.find('label').each(function(btn){
-        btn.visible(btn.data.data.searchText.indexOf(text) >= 0);
-      });
+      text = (text || '').toLowerCase();
+      if (text === currentFilter) {
+        return;
+      }
+      currentFilter = text;
+
+      var changed = false;
+      for (var i = 0; i < filterCtrls.length; i++) {
+        var ctrl = filterCtrls[i];
+        var show = ctrl.data.data.searchText.indexOf(text) >= 0;
+        if (ctrl.state.get('visible') !== show) {
+          ctrl.state.data.visible = show;
+          ctrl.getEl().style.display = show ? '' : 'none';
+          changed = true;
+        }
+      }
+
+      if (changed && gridCtrl) {
+        gridCtrl._lastRect = null;
+        gridCtrl.reflow();
+      }
+    }
+
+    function cancelPendingFilter() {
+      if (filterTimer) {
+        clearTimeout(filterTimer);
+        filterTimer = null;
+      }
+      pendingFilter = null;
+    }
+
+    function flushFilter() {
+      if (filterTimer) {
+        var text = pendingFilter;
+        cancelPendingFilter();
+        setFilter(text);
+      }
+    }
+
+    function scheduleFilter(text) {
+      pendingFilter = text;
+      if (filterTimer) {
+        clearTimeout(filterTimer);
+      }
+      filterTimer = setTimeout(function() {
+        filterTimer = null;
+        pendingFilter = null;
+        setFilter(text);
+      }, FILTER_DELAY);
     }
 
     var items = [];
@@ -124,10 +173,10 @@ tinymce.PluginManager.add('civicrmtoken', function(editor, pluginUrl) {
       body: [
         {
           type: 'textbox',
-          // tinymce.util.Delay.throttle.call(this, function(){...}, 100);
           onkeyup: function(e) {
             switch (e.keyCode) {
               case 40: // Down
+                flushFilter();
                 win.find('button').each(function(btn) {
                   if (btn.state.data.visible) {
                     btn.focus();
@@ -136,7 +185,7 @@ tinymce.PluginManager.add('civicrmtoken', function(editor, pluginUrl) {
                 });
                 break;
               default:
-                setFilter(e.target.value);
+                scheduleFilter(e.target.value);
             }
           }
         },
@@ -150,6 +199,10 @@ tinymce.PluginManager.add('civicrmtoken', function(editor, pluginUrl) {
       ],
       buttons: []
     });
+
+    gridCtrl = win.find('#mybuttons')[0] || null;
+    filterCtrls = win.find('button').toArray().concat(win.find('label').toArray());
+    win.on('close', cancelPendingFilter);
   });
 
   editor.addShortcut('ctrl+shift+t', 'Insert Token', 'civicrmtoken');
